@@ -1,1 +1,1 @@
-# diccionario_traductorVue
+# diccionario_traductor
