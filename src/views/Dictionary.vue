@@ -11,8 +11,6 @@
                 v-model="word"
                 placeholder="Write the word"></v-text-field>
                 <v-btn-group>
-                <v-btn icon="mdi-eye" @click="meanWord" color="indigo">Mean</v-btn>
-                <br>
                 <v-btn icon="mdi-pencil" @click="sWord" color="green">Synonyms</v-btn>
                 <br>
                 <v-btn icon="mdi-delete" @click="aWord" color="red">Antonyms</v-btn>
@@ -51,16 +49,6 @@
         }
     },
     methods: {
-        meanWord(){
-            axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${this.word}`)
-        .then(response => {
-          this.definition = response.data[0].meanings[0].definitions[0].definition;
-          this.word = ''
-        })
-        .catch(error => {
-          console.error('Error. Definition doesn´t exist', +error);
-        });
-    },
     sWord(){
             axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${this.word}`)
             .then(response => {
