@@ -40,6 +40,7 @@
     <script>
     import axios from 'axios';
    export default{
+    name:'DictionaryView',
     data(){
         return{
             word: '',

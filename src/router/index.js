@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Dictionary from '../views/Dictionary.vue'
+import Dictionary from '../views/DictionaryView.vue'
 
 const routes = [{
         path: '/',
