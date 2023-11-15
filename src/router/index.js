@@ -2,11 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Dictionary from '../views/DictionaryView.vue'
 import DefinicionesView from '../views/DefinicionesView.vue'
 import ConceptosView from '../views/ConceptosView.vue'
+import Welcome from '../views/WelcomeView.vue'
 
-
-const routes = [
-    {
+const routes = [{
         path: '/',
+        name: 'welcome',
+        component: Welcome
+    },
+    {
+        path: '/dictionary',
         name: 'dictionary',
         component: Dictionary
     },
@@ -15,9 +19,9 @@ const routes = [
         name: 'definiciones',
         component: DefinicionesView
     },
-    { 
-        path: '/conceptos', 
-        name: 'conceptos', 
+    {
+        path: '/conceptos',
+        name: 'conceptos',
         component: ConceptosView
     }
 ]
