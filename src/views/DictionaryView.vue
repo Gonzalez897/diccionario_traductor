@@ -1,5 +1,5 @@
 <template>
-    <v-content fluid>
+    <v-container fluid>
         <v-row>
             <v-col>
                 <v-text-field
@@ -35,7 +35,7 @@
             </div>
             </v-col>
         </v-row>
-    </v-content>
+    </v-container>
     </template>
     <script>
     import axios from 'axios';
