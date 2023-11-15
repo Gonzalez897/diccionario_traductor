@@ -1,4 +1,5 @@
 <template>
+ 
   <v-app>
     <!-- Menu de la aplicacion -->
     <v-app-bar class="bg-deep-purple-darken-4">
