@@ -1,14 +1,23 @@
 <template>
-    <v-container fluid>
+     <v-container fluid>
         <v-row justify="center">
             <v-col xs="12" sm="4" md="4" lg="4" xl="4" xxl="4">
                 <v-card>
                     <v-img height="250" cover src="https://static.vecteezy.com/system/resources/previews/016/089/695/non_2x/machine-translation-software-black-glyph-icon-vector.jpg"></v-img>
                     <v-card-text>
                         <h2 class="text-blue-grey-darken-2">Sistema Diccionario Traductor</h2>
-                        <p  class="text-blue-grey-darken-2">Login</p>
+                        <p  class="text-blue-grey-darken-2">Registro del usuario</p>
                         <br>
                         <v-form>
+                            <v-text-field
+                            label="Nombre"
+                            counter
+                            maxlength="50"
+                            color="indigo"
+                            clearable
+                            prepend-icon="mdi-account"
+                            v-model="usuario.name"
+                            ></v-text-field>
                             <v-text-field
                             label="Correo"
                             placeholder="correo@extension.com"
@@ -31,10 +40,10 @@
                             v-model="usuario.password"
                             ></v-text-field>
                             <v-btn
-                            color="blue-grey-darken-2"
+                            color="indigo"
                             block
-                            @click="login"
-                            >Iniciar sesion</v-btn>
+                            @click="agregarUsuario"
+                            >Registrar Usuario</v-btn>
                         </v-form>
                     </v-card-text>
                 </v-card>
@@ -54,10 +63,11 @@
 <script>
 import axios from 'axios';
 export default{
-    name:'LoginView',
+    name:'RegistrarView',
     data(){
         return{
             usuario:{
+                name:'',
                 email:'',
                 password:''
             },
@@ -66,40 +76,22 @@ export default{
         }
     },
     methods:{
-        // Peticion para realizar login
-        login(){
-            axios.post('http://127.0.0.1:8000/api/usuario/login',this.usuario)
-            .then(response=>{
-                // console.log(response)
-                if (response.status==200) {
-                    // se extrae el usuario y el token de
-                    // la respuesta que retorna el endpoint del login
-                    let datos={
-                        usuario:response.data.data.name,
-                        token:response.data.token
-                    }
-                    // Guardando los datos en local storage
-                    this.$store.dispatch('login', datos)
-                    // redireccionando a la pantalla de bienvenida
-                    this.$router.push('/welcome')
-                }
-            })
-            .catch(error=>{
-                console.log('Ha ocurrido un error'+error)
-                this.alertaEstado=true
+       agregarUsuario(){
+        axios.post('http://127.0.0.1:8000/api/usuario/registro',this.usuario)
+        .then(response=>{
+            if (response.status==200) {
 
-                // usuario no autorizado
-                if (error.response.status==401) {
-                    this.alertaMensaje=error.response.data.data
-                }else{
-                    this.alertaMensaje='¡Ups! Algo salio mal.'
-                }
-            })
-        }
+                this.alertaEstado=true;
+                this.alertaMensaje=response.data.data;
+
+                this.usuario={};
+            }else{
+                this.alertaEstado=true
+                this.alertaMensaje='¡Ups! Algo salio mal.'
+            }
+        })
+        .catch(error=>console.log('ha ocurrido un error'+error))
+       }
     }
 }
 </script>
-
-<style scoped>
-
-</style>
