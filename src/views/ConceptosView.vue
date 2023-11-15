@@ -1,24 +1,28 @@
 <template>  
  <v-container fluid>
-    <h1 class="text-purple-darken-2"> API conceptos</h1>
+    <v-row justify="center">
+        <v-col >
+    <h1 class="text-indigo"> API conceptos</h1>
     <v-col cols="6">
-        <v-text-field label="Definicion"  color="purple" v-model="Ldefinicion"></v-text-field>
-        <v-btn prepend-icon="mdi-check" color="purple-darken-2" block @click="getConceptos">Mostrar definicion</v-btn>
-     </v-col>
-     <v-row>
-        <v-col cols="8">
-                <template v-if="Lpalabra.length>0">
-                    <v-card :title="Lpalabra[0].entry" color="deep-purple-lighten-4">
-                        <v-card-subtitle v-for="(q, i) in Lconjugacion" :key="i">
-                          <b>  {{ q.partOfSpeech }} </b>
-                        </v-card-subtitle>
-                        <v-card-text v-for="(e, i) in Lextraerdefinicion" :key="i">
-                            {{ e.definition }}
-                        </v-card-text>
-                    </v-card>
-                </template>
-           </v-col> 
-     </v-row>
+        <v-text-field label="Definicion"  color="indigo" v-model="Ldefinicion"></v-text-field>
+        <v-btn prepend-icon="mdi-check" color="indigo" block @click="getConceptos">Mostrar definicion</v-btn>
+    </v-col>
+            <v-row>
+                <v-col cols="6">
+                    <template v-if="Lpalabra.length>0">
+                        <v-card :title="Lpalabra[0].entry" color="indigo-lighten-1">
+                            <v-card-subtitle v-for="(q, i) in Lconjugacion" :key="i">
+                                <b>  {{ q.partOfSpeech }} </b>
+                            </v-card-subtitle>
+                            <v-card-text v-for="(e, i) in Lextraerdefinicion" :key="i">
+                                {{ e.definition }}
+                            </v-card-text>
+                        </v-card>
+                    </template>
+                </v-col> 
+            </v-row>
+        </v-col>
+    </v-row>
  </v-container>
 </template>
 
@@ -53,7 +57,7 @@
         }
     }, 
     mounted(){
-        this.getConceptos()
+        
     }
  }
 </script> 

@@ -12,28 +12,24 @@
                 placeholder="Write the word"></v-text-field>
                 <v-row>
                     <v-col>
-                        <v-btn @click="sWord" color="green">Synonyms</v-btn>
+                        <v-btn @click="sWord" color="indigo">Synonyms</v-btn>
                     </v-col>
                     <v-col>
-                        <v-btn @click="aWord" color="red">Antonyms</v-btn>
+                        <v-btn @click="aWord" color="indigo">Antonyms</v-btn>
                     </v-col>
                 </v-row>
             </v-col>
             <v-col>
-                <v-card color="deep-purple-lighten-4">
-                <div v-if="synonyms">
-            <h2>Synonyms</h2>
-            <p>{{ synonyms }}</p>
-            </div>
-        </v-card>
+                <v-card color="indigo" v-if="synonyms">
+                    <v-card-title>Synonyms</v-card-title>
+                    <v-card-text>{{ synonyms }}</v-card-text>
+                </v-card>
             </v-col>
             <v-col>
-                <v-card color="deep-purple-lighten-4">
-                <div v-if="antonyms">
-            <h2>Antonyms</h2>
-            <p>{{ antonyms }}</p>
-            </div>
-        </v-card>
+                <v-card color="indigo" v-if="antonyms">
+                    <v-card-title>Antonyms</v-card-title>
+                    <v-card-text>{{ antonyms }}</v-card-text>
+                </v-card>
             </v-col>
         </v-row>
     </v-container>

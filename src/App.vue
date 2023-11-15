@@ -1,47 +1,50 @@
 <template>
- 
+  <v-responsive >
   <v-app>
     <!-- Menu de la aplicacion -->
-    <v-app-bar class="bg-indigo">
+    <v-app-bar class="bg-blue-grey-darken-2" :elevation="15" rounded>
         <v-app-bar-title>Proyecto</v-app-bar-title>
         <!-- Se muestra cuando no haya usuario logueado -->
           <template v-if="this.$store.getters.getUsuario==null">
-            <v-btn prepend-icon="mdi-login" to="/">Login</v-btn>
-            <v-btn prepend-icon="mdi-login" to="/registar">Registrar Usuario</v-btn>
+            <v-btn prepend-icon="mdi-login-variant" to="/">Login</v-btn>
+            <v-btn prepend-icon="mdi-account-plus" to="/registar">Registrar Usuario</v-btn>
           </template>
           <!-- Se muestran cuando hay un usuario logueado -->
           <template v-if="this.$store.getters.getUsuario!==null">
-            <v-btn prepend-icon="mdi-palette" color="deep-purple-lighten-4" to="/dictionary">
+            <v-btn prepend-icon="mdi-home"  to="/welcome">
+              Inicio
+            </v-btn>
+            <v-btn prepend-icon="mdi-alphabetical"  to="/dictionary">
               Sinonimos y antonimos
             </v-btn>
-            <v-btn prepend-icon="mdi-palette" color="deep-purple-lighten-4" to="/definiciones">
+            <v-btn prepend-icon="mdi-tooltip-edit" to="/definiciones">
               Definiciones
             </v-btn>  
             <div class="text-center">
-              <v-menu :location="location" color="yellow-lighten-4">
+              <v-menu transition="slide-x-transition">
                 <template v-slot:activator="{ props }">
                   <v-btn
-                    color="info"
+                    block
+                    color="white"
                     dark
                     v-bind="props"
+                    prepend-icon="mdi-api"
+
                   >
                     Otras APIS
                   </v-btn>
                 </template>
 
                 <v-list>
-                  <v-list-item
-                    v-for="(item, index) in items"
-                    :key="index"
-                  >
-                  <v-btn :to="item.to" color="yellow-lighten-4">
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-btn>
+                  <v-list-item v-for="(item, index) in items" :key="index">
+                    <v-btn :to="item.to" color="indigo" width="150px">
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-btn>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </div>
-            <v-btn prepend-icon="mdi-logout" @click="logout">
+            <v-btn prepend-icon="mdi-logout-variant" @click="logout">
               Logout
             </v-btn>  
           </template>
@@ -51,6 +54,7 @@
       <router-view/>
     </v-main>
   </v-app>
+</v-responsive>
 </template>
 
 <script>
@@ -81,10 +85,8 @@ export default {
   data: () => ({
     //
     items: [
-        { title: 'Inicio', to: '/welcome' },
         { title: 'Definiciones', to: '/definiciones' },
         { title: 'Conceptos', to:'/conceptos' },
-        { title: 'Gestión' },
       ],
   }),
   created() {
@@ -93,3 +95,7 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+
+</style>

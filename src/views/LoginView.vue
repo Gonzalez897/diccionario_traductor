@@ -31,7 +31,7 @@
                             v-model="usuario.password"
                             ></v-text-field>
                             <v-btn
-                            color="blue-grey-darken-2"
+                            color="indigo"
                             block
                             @click="login"
                             >Iniciar sesion</v-btn>
