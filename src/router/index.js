@@ -5,7 +5,8 @@ import ConceptosView from '../views/ConceptosView.vue'
 import Welcome from '../views/WelcomeView.vue'
 import Login from '../views/LoginView.vue'
 
-const routes = [{
+const routes = [
+    {
         path: '/',
         name: 'welcome',
         component: Welcome
